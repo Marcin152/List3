@@ -1,0 +1,61 @@
+class Bus:
+    def __init__(self, line_number):
+        self.line_number = line_number
+
+    def show_line(self):
+        print(f"Timetable for Line: {self.line_number}")
+
+class Timetable(Bus):
+    def __init__(self, line_number, day, bus_stop, frequency):
+        super().__init__(line_number)
+        self.day = day
+        self.bus_stop = bus_stop
+        self.frequency = frequency
+
+    def show_timetable(self):
+        print(f"Timetable for days: {self.day}, on bus: {self.bus_stop}, frequency : {self.frequency} hours.")
+
+class Passenger:
+    def __init__(self, passanger):
+        self.passanger = passanger
+
+class Ticket(Passenger):
+    def __init__(self, price, passanger):
+        super().__init__(passanger)
+        self.price = price
+
+    def discount(self):
+
+        if self.passanger == "student":
+            self.price = (self.price) / 2
+            print(f"Student will pay for ticket: {self.price}")
+        elif self.passanger == "retired":
+            self.price = 0
+            print(f"Retired will pay for ticket: {self.price}")
+        elif self.passanger == "collegue":
+            self.price = (self.price * 0.25)
+            print(f"Collegue will pay for ticket: {self.price}")
+
+def main():
+    LineA = Timetable(128, "mon-fri", "Walker st. ", 2)
+    LineA.show_line()
+    LineA.show_timetable()
+
+    LineB = Timetable(199,"Saturday", "John st. ", 5)
+    LineB.show_line()
+    LineB.show_timetable()
+
+    LineC = Timetable(137,"Sunday","Bony st.", 16)
+    LineC.show_line()
+    LineC.show_timetable()
+
+    student = Ticket(5, "student")
+    student.discount()
+
+    retired = Ticket(0, "retired")
+    retired.discount()
+
+    collegue = Ticket(5,"collegue")
+    collegue.discount()
+
+main()
